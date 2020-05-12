@@ -437,6 +437,12 @@ namespace UniG
         public static bool SetLighting(int redPercentage, int greenPercentage, int bluePercentage) =>
             dLed.LogiLedSetLighting(redPercentage, greenPercentage, bluePercentage);
 
+        public static bool SetLighting(int brightness) {
+            int bri = brightness - 1;
+            if (bri < 0) bri = brightness;
+            return dLed.LogiLedSetLighting(bri, brightness, bri);
+        }
+
         /// <summary>
         /// Restores the last saved lighting. It should be called after a temporary effect is finished.
         /// </summary>
