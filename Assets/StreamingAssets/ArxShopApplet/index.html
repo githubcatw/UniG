@@ -1,0 +1,93 @@
+
+<!-- The main app's source code is in UniG/Demo/Arx/Scripts. -->
+
+<html>
+    <head>
+        <!-- A stylesheet -->
+        <style>
+            /* Set the background to white */
+            body {
+                background-color: white;
+                font-family: serif;
+            }
+            /* Basic stylesheet for items */
+            .weapon-container {
+                margin: 20px 20px 0 0;  
+                border: 1px solid #333;
+                overflow: auto
+            }
+            .weapon-thumb {
+                float: left
+            }
+            .weapon-thumb img {
+                display: block
+            }
+            .weapon-content {
+                margin-left: 210px
+            }
+            .weapon-title {
+                font-weight: bold;
+                font-size: 200%
+            }
+            /* Basic stylesheet for buy buttons*/
+            div.buy {
+                display:inline-block;
+                color:#444;
+                border:1px solid #CCC;
+                background:#DDD;
+                box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+                cursor:pointer;
+                vertical-align:middle;
+                max-width: 100px;
+                padding: 5px;
+                text-align: center;
+            }
+            div.buy:active {
+                color:red;
+                box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Heading -->
+        <h1 style="text-align: center">Weapon Shop</h1>
+        <!-- Gold quantity, will be edited by the host app -->
+        <p style="text-align: center" id="gold">You have some gold.</p>
+        <!-- Weapon 1 -->
+        <div class="weapon-container">
+            <!-- Thumbnail -->
+            <div class="weapon-thumb"><img src="cannon.png" /></div>
+            <!-- Content -->
+            <div class="weapon-content">
+                <!-- The name and gold cost, these aren't read by the host -->
+                <h3 class="weapon-title">Cannon</h3>
+                <b>300 gold</b>
+                <br />
+                <!-- Enabled by the host if we can't afford this weapon -->
+                <div>
+                    <p style="color: red" id="cant_afford_1"></p>
+                </div>
+                <!-- Buy button -->
+                <div class="buy" id="buy_it_1">Buy</div>
+            </div>
+        </div>
+        <!-- Weapon 2 -->
+        <div class="weapon-container">
+            <!-- Thumbnail -->
+            <div class="weapon-thumb"><img src="sword.png"/></div>
+            <!-- Content -->
+            <div class="weapon-content">
+                <!-- The name and gold cost, these aren't read by the host -->
+                <h3 class="weapon-title">Sword</h3>
+                <b>150 gold</b>
+                <br />
+                <!-- Enabled by the host if we can't afford this weapon -->
+                <div>
+                    <p style="color: red" id="cant_afford_2"></p>
+                </div>
+                <!-- Buy button -->
+                <div class="buy" id="buy_it_2">Buy</div>
+            </div>
+        </div>
+    </body>
+</html>
