@@ -1,0 +1,19 @@
+{
+  "name": "com.githubcatw.unig",
+  "version": "1.0.0",
+  "displayName": "UniG",
+  "description": "A better Unity wrapper for various Logitech G SDKs.",
+  "unity": "2019.3",
+  "unityRelease": "7f1",
+  "keywords": [
+    "logitech",
+    "wrapper",
+    "sdk",
+    "logitechg"
+  ],
+  "author": {
+    "name": "Narek Torosyan (githubcatw)",
+    "email": "narek.email@gmail.com",
+    "url": "https://github.com/githubcatw/UniG"
+  }
+}
