@@ -3,13 +3,11 @@ using System.Runtime.InteropServices;
 using System.Text;
 using UnityEngine;
 
-namespace UniG
-{
+namespace UniG {
     /// <summary>
     /// Key scan codes.
     /// </summary>
-    public enum KeyCode
-    {
+    public enum KeyCode {
         ESC = 0x01,
         F1 = 0x3b,
         F2 = 0x3c,
@@ -126,7 +124,7 @@ namespace UniG
         G_LOGO = 0xFFFF1,
         G_BADGE = 0xFFFF2
     };
-    
+
     /// <summary>
     /// Device type.
     /// </summary>
@@ -137,7 +135,7 @@ namespace UniG
         Headset = 0x8,
         Speaker = 0xe
     }
-    
+
     /// <summary>
     /// Control the LEDs of supported Logitech keyboards.
     /// </summary>
@@ -186,7 +184,7 @@ namespace UniG
         public static extern bool LogiLedInitWithName(String name);
 
         //Config option functions
-        
+
         /// <summary>
         /// Allows the developer to query for a number set by the user and use that value to customize the interaction with the SDK.
         /// </summary>
@@ -195,7 +193,7 @@ namespace UniG
         /// <returns></returns>
         [DllImport("LogitechLedEnginesWrapper ", CallingConvention = CallingConvention.Cdecl)]
         public static extern bool LogiLedGetConfigOptionNumber([MarshalAs(UnmanagedType.LPWStr)]String configPath, ref double defaultNumber);
-        
+
         /// <summary>
         /// Allows the developer to query for a boolean set by the user and use it to customize the interaction with the SDK.
         /// </summary>
@@ -204,7 +202,7 @@ namespace UniG
         /// <returns></returns>
         [DllImport("LogitechLedEnginesWrapper ", CallingConvention = CallingConvention.Cdecl)]
         public static extern bool LogiLedGetConfigOptionBool([MarshalAs(UnmanagedType.LPWStr)]String configPath, ref bool defaultRed);
-        
+
         /// <summary>
         /// Allows the developer to query for a color set by the user and use it to customize the interaction with the SDK.
         /// </summary>
@@ -215,11 +213,11 @@ namespace UniG
         /// <returns></returns>
         [DllImport("LogitechLedEnginesWrapper ", CallingConvention = CallingConvention.Cdecl)]
         public static extern bool LogiLedGetConfigOptionColor([MarshalAs(UnmanagedType.LPWStr)]String configPath, ref int defaultRed, ref int defaultGreen, ref int defaultBlue);
-        
+
         [DllImport("LogitechLedEnginesWrapper ", CallingConvention = CallingConvention.Cdecl)]
         public static extern bool LogiLedGetConfigOptionKeyInput([MarshalAs(UnmanagedType.LPWStr)]String configPath, StringBuilder buffer, int bufsize);
         /////////////////////
-        
+
         /// <summary>
         /// Sets the target device type for future calls.
         /// The default target device is LOGI_DEVICETYPE_ALL, therefore, if no call is made to LogiLedSetTargetDevice the SDK will apply any function to all the connected devices.
@@ -229,7 +227,7 @@ namespace UniG
         public static extern bool LogiLedSetTargetDevice(int targetDevice);
 
         /// <summary>
-        /// Retrieves the version of the SDK version installed on the user’s system. 
+        /// Retrieves the version of the SDK version installed on the user’s system.
         /// </summary>
         /// <param name="majorNum">Will be set to the major build number.</param>
         /// <param name="minorNum">Will be set to the minor build number.</param>
@@ -317,7 +315,7 @@ namespace UniG
         [DllImport("LogitechLedEnginesWrapper ", CallingConvention = CallingConvention.Cdecl)]
         public static extern void LogiLedShutdown();
     }
-    
+
     /// <summary>
     /// Control the LEDs of supported Logitech keyboards.
     /// </summary>
@@ -327,19 +325,19 @@ namespace UniG
         private const int LOGI_DEVICETYPE_PERKEY_RGB_ORD = 2;
 
         /// <summary>
-        /// Converts a Unity color to an R/G/B percentage. 
+        /// Converts a Unity color to an R/G/B percentage.
         /// </summary>
         public static Color UnityToPercentage(Color unityColor) {
             return new Color(unityColor.r * 100, unityColor.g * 100, unityColor.b * 100);
         }
-        
+
         /// <summary>
         /// Converts an R/G/B percentage to a Unity color.
         /// </summary>
         public static Color PercentageToUnity(Color percColor) {
             return new Color(percColor.r / 100, percColor.g / 100, percColor.b / 100);
         }
-        
+
         public enum DeviceLightingType {
             /// <summary>
             /// A peripheral that supports monochrome lighting (ex. G710+).
@@ -378,21 +376,21 @@ namespace UniG
         public static bool Init(string name) => dLed.LogiLedInitWithName(name);
 
         //Config option functions
-        
+
         /// <summary>
         /// Allows the developer to query for a number set by the user and use that value to customize the interaction with the SDK.
         /// </summary>
         /// <param name="configPath">This identfes the option uniquely. This can be just a string (e.g."Terrorist") or it can be a two level tree ("Colors/Terrorist").</param>
         /// <param name="defaultNumber">The number set by the user.</param>
-        public static bool GetConfigOptionNumber(string configPath, ref double defaultNumber) => dLed.LogiLedGetConfigOptionNumber(configPath, ref defaultNumber);
-        
+        public static bool GetConfigOption(string configPath, ref double defaultNumber) => dLed.LogiLedGetConfigOptionNumber(configPath, ref defaultNumber);
+
         /// <summary>
         /// Allows the developer to query for a boolean set by the user and use it to customize the interaction with the SDK.
         /// </summary>
         /// <param name="configPath">This identfes the option uniquely. This can be just a string (e.g."Terrorist") or it can be a two level tree ("Colors/Terrorist").</param>
         /// <param name="defaultBool">The boolean set by the user.</param>
-        public static bool GetConfigOptionBool(string configPath, ref bool defaultBool) => dLed.LogiLedGetConfigOptionBool(configPath, ref defaultBool);
-        
+        public static bool GetConfigOption(string configPath, ref bool defaultBool) => dLed.LogiLedGetConfigOptionBool(configPath, ref defaultBool);
+
         /// <summary>
         /// Allows the developer to query for a color set by the user and use it to customize the interaction with the SDK.
         /// </summary>
@@ -400,13 +398,13 @@ namespace UniG
         /// <param name="defaultRed">The red value of the color set by the user.</param>
         /// <param name="defaultBlue">The green value of the color set by the user.</param>
         /// <param name="defaultGreen">The green value of the color set by the user.</param>
-        public static bool GetConfigOptionColor(string configPath, ref int defaultRed, ref int defaultGreen, ref int defaultBlue) =>
+        public static bool GetConfigOption(string configPath, ref int defaultRed, ref int defaultGreen, ref int defaultBlue) =>
             dLed.LogiLedGetConfigOptionColor(configPath, ref defaultRed, ref defaultBlue, ref defaultGreen);
 
-        public static bool GetConfigOptionKeyInput(string configPath, StringBuilder buffer, int bufsize) =>
+        public static bool GetConfigOption(string configPath, StringBuilder buffer, int bufsize) =>
             dLed.LogiLedGetConfigOptionKeyInput(configPath, buffer, bufsize);
         /////////////////////
-        
+
         /// <summary>
         /// Sets the target device type for future calls.
         /// The default target device is LOGI_DEVICETYPE_ALL, therefore, if no call is made to LogiLedSetTargetDevice the SDK will apply any function to all the connected devices.
@@ -414,7 +412,7 @@ namespace UniG
         public static bool SetTargetDevice(int targetDevice) => dLed.LogiLedSetTargetDevice(targetDevice);
 
         /// <summary>
-        /// Retrieves the version of the SDK version installed on the user’s system. 
+        /// Retrieves the version of the SDK version installed on the user’s system.
         /// </summary>
         /// <param name="majorNum">Will be set to the major build number.</param>
         /// <param name="minorNum">Will be set to the minor build number.</param>
@@ -488,7 +486,7 @@ namespace UniG
         public static bool FlashSingleKey(KeyCode keyName, int redPercentage, int greenPercentage, int bluePercentage, int msDuration, int msInterval) =>
             dLed.LogiLedFlashSingleKey(keyName, redPercentage, greenPercentage, bluePercentage, msDuration, msInterval);
 
-        public static bool PulseSingleKey(KeyCode keyName, int startRedPercentage, int startGreenPercentage, int startBluePercentage, int finishRedPercentage, 
+        public static bool PulseSingleKey(KeyCode keyName, int startRedPercentage, int startGreenPercentage, int startBluePercentage, int finishRedPercentage,
             int finishGreenPercentage, int finishBluePercentage, int msDuration, bool isInfinite) =>
         dLed.LogiLedPulseSingleKey(keyName, startRedPercentage, startGreenPercentage, startBluePercentage,
                                    finishRedPercentage, finishGreenPercentage, finishBluePercentage, msDuration, isInfinite);
@@ -500,5 +498,5 @@ namespace UniG
 
         public static void Shutdown() { dLed.LogiLedShutdown(); }
     }
-    
+
 }

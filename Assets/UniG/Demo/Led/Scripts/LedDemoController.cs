@@ -12,7 +12,7 @@ namespace UniG.Demos {
         private Color healthGood;
         private Color healthMid;
         private Color healthCrit;
-        
+
         // Start is called before the first frame update
         void Start() {
             // Initialize and set target device
@@ -35,7 +35,7 @@ namespace UniG.Demos {
         private void OnApplicationQuit() {
             // Shut down the LED SDK
             Led.Shutdown();
-            
+
         }
 
         // Update is called once per frame
@@ -67,7 +67,7 @@ namespace UniG.Demos {
             // Else, set it to black
             else Led.SetLightingForKeyWithKeyName(kb, 0, 0, 0);
         }
-        
+
         // Take damage
         public void TakeDamage() {
             // Subtract 10 from the user's health, if it isn't empty
@@ -75,18 +75,18 @@ namespace UniG.Demos {
             // Set the color of every zone on every peripheral to red
             Led.SetLightingForTargetZone(DeviceType.Headset, 0, 100, 0, 0);
             Led.SetLightingForTargetZone(DeviceType.Headset, 1, 100, 0, 0);
-            
+
             Led.SetLightingForTargetZone(DeviceType.Mouse, 0, 100, 0, 0);
             Led.SetLightingForTargetZone(DeviceType.Mouse, 1, 100, 0, 0);
-            
+
             Led.SetLightingForTargetZone(DeviceType.Mousemat, 0, 100, 0, 0);
-            
+
             Led.SetLightingForTargetZone(DeviceType.Speaker, 0, 100, 0, 0);
             Led.SetLightingForTargetZone(DeviceType.Speaker, 1, 100, 0, 0);
             Led.SetLightingForTargetZone(DeviceType.Speaker, 2, 100, 0, 0);
             Led.SetLightingForTargetZone(DeviceType.Speaker, 3, 100, 0, 0);
         }
-        
+
         // Gain health
         public void GainHealth() {
             // Add 10 to the user's health, if it isn't full
@@ -94,18 +94,18 @@ namespace UniG.Demos {
             // Set the color of every zone on every peripheral to green
             Led.SetLightingForTargetZone(DeviceType.Headset, 0, 0, 100, 0);
             Led.SetLightingForTargetZone(DeviceType.Headset, 1, 0, 100, 0);
-            
+
             Led.SetLightingForTargetZone(DeviceType.Mouse, 0, 0, 100, 0);
             Led.SetLightingForTargetZone(DeviceType.Mouse, 1, 0, 100, 0);
-            
+
             Led.SetLightingForTargetZone(DeviceType.Mousemat, 0, 0, 100, 0);
-            
+
             Led.SetLightingForTargetZone(DeviceType.Speaker, 0, 0, 100, 0);
             Led.SetLightingForTargetZone(DeviceType.Speaker, 1, 0, 100, 0);
             Led.SetLightingForTargetZone(DeviceType.Speaker, 2, 0, 100, 0);
             Led.SetLightingForTargetZone(DeviceType.Speaker, 3, 0, 100, 0);
         }
-        
+
         // Helper function that gets a color from the user's preferences
         public Color GetColor(string path, Color defaultColor) {
             // Initialize default values
@@ -113,7 +113,7 @@ namespace UniG.Demos {
             int g = (int)defaultColor.g;
             int b = (int)defaultColor.b;
             // Get the color from the options
-            Led.GetConfigOptionColor(path, ref r, ref g, ref b);
+            Led.GetConfigOption(path, ref r, ref g, ref b);
             // Return the received color (or default if none)
             return new Color(r, g, b);
         }
