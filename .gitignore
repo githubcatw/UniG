@@ -62,7 +62,5 @@ crashlytics-build.properties
 
 /Assets/UniG/Plugins/x64/*
 /Assets/UniG/Plugins/x86/*
-/Assets/UniG/Plugins/Editor/*
 !/Assets/UniG/Plugins/x64/*.meta
 !/Assets/UniG/Plugins/x86/*.meta
-!/Assets/UniG/Plugins/Editor/*.meta
