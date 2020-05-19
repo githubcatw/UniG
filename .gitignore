@@ -60,3 +60,6 @@ crashlytics-build.properties
 
 .idea/
 
+/Assets/UniG/Plugins/x64/*
+/Assets/UniG/Plugins/x86/*
+/Assets/UniG/Plugins/Editor/*
