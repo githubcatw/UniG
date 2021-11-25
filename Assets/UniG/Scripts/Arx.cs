@@ -1,6 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using System;
 using UniG.Direct;
+using UnityEngine;
 
 namespace UniG {
     public class Arx {
@@ -119,6 +120,9 @@ namespace UniG {
 
         public static bool AddImageFromBitmap(byte[] bitmap, int width, int height, string fileName) =>
             dArx.LogiArxAddImageFromBitmap(bitmap, width, height, fileName);
+
+        public static bool AddStreamingAssetAs(string filePath, string fileName, string mimeType = "") =>
+            dArx.LogiArxAddFileAs(Application.streamingAssetsPath + filePath, fileName, mimeType);
 
         /// <summary>
         /// Sets the index page.

@@ -70,10 +70,10 @@ namespace UniG.Demos {
             // If our event is a device connecting:
             if (eventType == (int)Arx.Event.Arrival) {
                 // Send our applet's index file
-                Arx.AddFileAs(Application.streamingAssetsPath + "/ArxShopApplet/index.html", "index.html");
+                Arx.AddStreamingAssetAs("/ArxShopApplet/index.html", "index.html");
                 // Send all its dependencies
-                Arx.AddFileAs(Application.streamingAssetsPath + "/ArxShopApplet/cannon.png", "cannon.png");
-                Arx.AddFileAs(Application.streamingAssetsPath + "/ArxShopApplet/sword.png", "sword.png");
+                Arx.AddStreamingAssetAs("/ArxShopApplet/cannon.png", "cannon.png");
+                Arx.AddStreamingAssetAs("/ArxShopApplet/sword.png", "sword.png");
                 // Set our index file
                 // This makes the applet show up and become active in Arx Control
                 Arx.SetIndex("index.html");
