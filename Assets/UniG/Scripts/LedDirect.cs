@@ -182,7 +182,7 @@ namespace UniG.Direct {
         public static extern bool LogiLedStopEffectsOnKey(KeyCode keyName);
 
         [DllImport("LogitechLedEnginesWrapper ", CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool LogiLedSetLightingForTargetZone(DeviceType deviceType, int zone, int redPercentage, int greenPercentage, int bluePercentage);
+        public static extern bool LogiLedSetLightingForTargetZone(Led.DeviceType deviceType, int zone, int redPercentage, int greenPercentage, int bluePercentage);
 
         [DllImport("LogitechLedEnginesWrapper ", CallingConvention = CallingConvention.Cdecl)]
         public static extern void LogiLedShutdown();

@@ -195,7 +195,7 @@ namespace UniG {
 
         public static bool StopEffectsOnKey(KeyCode keyName) => dLed.LogiLedStopEffectsOnKey(keyName);
 
-        public static bool SetLightingForTargetZone(DeviceType deviceType, int zone, int redPercentage, int greenPercentage, int bluePercentage) =>
+        public static bool SetLightingForTargetZone(Led.DeviceType deviceType, int zone, int redPercentage, int greenPercentage, int bluePercentage) =>
             dLed.LogiLedSetLightingForTargetZone(deviceType, zone, redPercentage, greenPercentage, bluePercentage);
 
         public static void Shutdown() { dLed.LogiLedShutdown(); }
