@@ -77,6 +77,12 @@ namespace UniG {
         /// <param name="name">The preferred name for this integration to show up as.</param>
         public static bool Init(string name) => dLed.LogiLedInitWithName(name);
 
+        /// <summary>
+        /// Makes sure there isn’t already another instance running and then makes necessary initializations.<br/>
+        /// Uses the product name set in Project Settings as the integration name.
+        /// </summary>
+        public static bool InitWithProductName() => dLed.LogiLedInitWithName(Application.productName);
+
         //Config option functions
 
         /// <summary>

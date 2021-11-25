@@ -35,7 +35,6 @@ namespace UniG.Demos {
         private void OnApplicationQuit() {
             // Shut down the LED SDK
             Led.Shutdown();
-
         }
 
         // Update is called once per frame
