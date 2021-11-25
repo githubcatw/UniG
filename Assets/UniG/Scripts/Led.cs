@@ -317,7 +317,7 @@ namespace UniG {
     }
 
     /// <summary>
-    /// Control the LEDs of supported Logitech keyboards.
+    /// Control the LEDs of supported Logitech G hardware.
     /// </summary>
     public class Led {
         private const int LOGI_DEVICETYPE_MONOCHROME_ORD = 0;
@@ -325,7 +325,7 @@ namespace UniG {
         private const int LOGI_DEVICETYPE_PERKEY_RGB_ORD = 2;
 
         /// <summary>
-        /// Converts a Unity color to an R/G/B percentage.
+        /// Converts a Unity color to an R/G/B percentage for use with this library.
         /// </summary>
         public static Color UnityToPercentage(Color unityColor) {
             return new Color(unityColor.r * 100, unityColor.g * 100, unityColor.b * 100);
@@ -497,6 +497,22 @@ namespace UniG {
             dLed.LogiLedSetLightingForTargetZone(deviceType, zone, redPercentage, greenPercentage, bluePercentage);
 
         public static void Shutdown() { dLed.LogiLedShutdown(); }
+
+        /// <summary>
+        /// Sets the lighting on connected and supported devices, simulating behavior of monochrome keyboards.
+        /// </summary>
+        /// <param name="redPercentage">Percentage of red, range is 0-100</param>
+        /// <param name="greenPercentage">Percentage of green, range is 0-100</param>
+        /// <param name="bluePercentage">Percentage of blue, range is 0-100</param>
+        public static bool SetMonochromeLighting(int redPercentage, int greenPercentage, int bluePercentage) {
+            int highest = 0;
+            if (redPercentage > greenPercentage && redPercentage > bluePercentage) highest = redPercentage;
+            else if (greenPercentage > redPercentage && greenPercentage > bluePercentage) highest = greenPercentage;
+            else if (bluePercentage > greenPercentage && bluePercentage > redPercentage) highest = bluePercentage;
+            else if (bluePercentage == greenPercentage && bluePercentage == redPercentage) highest = bluePercentage;
+
+            return dLed.LogiLedSetLighting(highest, highest, highest);
+        }
     }
 
 }
