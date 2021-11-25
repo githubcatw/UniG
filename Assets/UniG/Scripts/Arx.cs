@@ -7,21 +7,6 @@ namespace UniG {
     public class Arx {
 
         /// <summary>
-        /// A device's orientation.
-        /// </summary>
-        public enum Orientation {
-            /// <summary>
-            /// A phone/tablet with portrait orientation.
-            /// </summary>
-            Portrait = 0x01,
-
-            /// <summary>
-            /// A phone/tablet with landscape orientation.
-            /// </summary>
-            Landscape = 0x10
-        }
-
-        /// <summary>
         /// An event.
         /// </summary>
         public enum Event {

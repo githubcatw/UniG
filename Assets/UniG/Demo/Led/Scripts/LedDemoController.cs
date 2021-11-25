@@ -73,18 +73,18 @@ namespace UniG.Demos {
             // Subtract 10 from the user's health, if it isn't empty
             if (health != 0) health -= 10;
             // Set the color of every zone on every peripheral to red
-            Led.SetLightingForTargetZone(DeviceType.Headset, 0, 100, 0, 0);
-            Led.SetLightingForTargetZone(DeviceType.Headset, 1, 100, 0, 0);
+            Led.SetLightingForTargetZone(Led.DeviceType.Headset, 0, 100, 0, 0);
+            Led.SetLightingForTargetZone(Led.DeviceType.Headset, 1, 100, 0, 0);
 
-            Led.SetLightingForTargetZone(DeviceType.Mouse, 0, 100, 0, 0);
-            Led.SetLightingForTargetZone(DeviceType.Mouse, 1, 100, 0, 0);
+            Led.SetLightingForTargetZone(Led.DeviceType.Mouse, 0, 100, 0, 0);
+            Led.SetLightingForTargetZone(Led.DeviceType.Mouse, 1, 100, 0, 0);
 
-            Led.SetLightingForTargetZone(DeviceType.Mousemat, 0, 100, 0, 0);
+            Led.SetLightingForTargetZone(Led.DeviceType.Mousemat, 0, 100, 0, 0);
 
-            Led.SetLightingForTargetZone(DeviceType.Speaker, 0, 100, 0, 0);
-            Led.SetLightingForTargetZone(DeviceType.Speaker, 1, 100, 0, 0);
-            Led.SetLightingForTargetZone(DeviceType.Speaker, 2, 100, 0, 0);
-            Led.SetLightingForTargetZone(DeviceType.Speaker, 3, 100, 0, 0);
+            Led.SetLightingForTargetZone(Led.DeviceType.Speaker, 0, 100, 0, 0);
+            Led.SetLightingForTargetZone(Led.DeviceType.Speaker, 1, 100, 0, 0);
+            Led.SetLightingForTargetZone(Led.DeviceType.Speaker, 2, 100, 0, 0);
+            Led.SetLightingForTargetZone(Led.DeviceType.Speaker, 3, 100, 0, 0);
         }
 
         // Gain health
@@ -92,18 +92,18 @@ namespace UniG.Demos {
             // Add 10 to the user's health, if it isn't full
             if (health != 100) health += 10;
             // Set the color of every zone on every peripheral to green
-            Led.SetLightingForTargetZone(DeviceType.Headset, 0, 0, 100, 0);
-            Led.SetLightingForTargetZone(DeviceType.Headset, 1, 0, 100, 0);
+            Led.SetLightingForTargetZone(Led.DeviceType.Headset, 0, 0, 100, 0);
+            Led.SetLightingForTargetZone(Led.DeviceType.Headset, 1, 0, 100, 0);
 
-            Led.SetLightingForTargetZone(DeviceType.Mouse, 0, 0, 100, 0);
-            Led.SetLightingForTargetZone(DeviceType.Mouse, 1, 0, 100, 0);
+            Led.SetLightingForTargetZone(Led.DeviceType.Mouse, 0, 0, 100, 0);
+            Led.SetLightingForTargetZone(Led.DeviceType.Mouse, 1, 0, 100, 0);
 
-            Led.SetLightingForTargetZone(DeviceType.Mousemat, 0, 0, 100, 0);
+            Led.SetLightingForTargetZone(Led.DeviceType.Mousemat, 0, 0, 100, 0);
 
-            Led.SetLightingForTargetZone(DeviceType.Speaker, 0, 0, 100, 0);
-            Led.SetLightingForTargetZone(DeviceType.Speaker, 1, 0, 100, 0);
-            Led.SetLightingForTargetZone(DeviceType.Speaker, 2, 0, 100, 0);
-            Led.SetLightingForTargetZone(DeviceType.Speaker, 3, 0, 100, 0);
+            Led.SetLightingForTargetZone(Led.DeviceType.Speaker, 0, 0, 100, 0);
+            Led.SetLightingForTargetZone(Led.DeviceType.Speaker, 1, 0, 100, 0);
+            Led.SetLightingForTargetZone(Led.DeviceType.Speaker, 2, 0, 100, 0);
+            Led.SetLightingForTargetZone(Led.DeviceType.Speaker, 3, 0, 100, 0);
         }
 
         // Helper function that gets a color from the user's preferences

@@ -127,13 +127,17 @@ namespace UniG {
     };
 
     /// <summary>
-    /// Device type.
+    /// A device's orientation.
     /// </summary>
-    public enum DeviceType {
-        Keyboard = 0x0,
-        Mouse = 0x3,
-        Mousemat = 0x4,
-        Headset = 0x8,
-        Speaker = 0xe
+    public enum Orientation {
+        /// <summary>
+        /// A phone/tablet with portrait orientation.
+        /// </summary>
+        Portrait = 0x01,
+
+        /// <summary>
+        /// A phone/tablet with landscape orientation.
+        /// </summary>
+        Landscape = 0x10
     }
 }

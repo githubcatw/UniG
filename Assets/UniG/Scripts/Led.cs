@@ -16,6 +16,17 @@ namespace UniG {
         private const int LOGI_DEVICETYPE_PERKEY_RGB_ORD = 2;
 
         /// <summary>
+        /// Device type.
+        /// </summary>
+        public enum DeviceType {
+            Keyboard = 0x0,
+            Mouse = 0x3,
+            Mousemat = 0x4,
+            Headset = 0x8,
+            Speaker = 0xe
+        }
+
+        /// <summary>
         /// Converts a Unity color to an R/G/B percentage for use with this library.
         /// </summary>
         public static Color UnityToPercentage(Color unityColor) {
