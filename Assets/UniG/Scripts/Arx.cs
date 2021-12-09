@@ -78,7 +78,11 @@ namespace UniG {
             /// </summary>
             AndroidOther = 0x07
         }
-        
+
+        internal static void AddFileAs(object path, object name, object mime) {
+            throw new NotImplementedException();
+        }
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void logiArxCB(int eventType, int eventValue, [MarshalAs(UnmanagedType.LPWStr)] String eventArg,
             IntPtr context);

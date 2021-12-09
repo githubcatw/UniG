@@ -2,13 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UniG.Experimental.ArxOOP;
 using UnityEngine;
 using UnityEngine.UI;
 
 // Applet's source code is in StreamingAssets/ArxShopApplet.
 
-namespace UniG.Demos {
-    public class ArxDemoController : MonoBehaviour {
+namespace UniG.Experimental.Demos {
+    public class ArxOOPDemoController : MonoBehaviour {
 
         private static int gold = 5500;
         private static List<string> items = new List<string>();
@@ -21,32 +22,30 @@ namespace UniG.Demos {
             {1, "Cannon"},
             {2, "Sword"}
         };
+        static ArxFile[] appletFiles = new ArxFile[] {
+            new StreamingAssetArxFile("/ArxShopApplet/index.html", "index.html"),
+            new StreamingAssetArxFile("/ArxShopApplet/cannon.png", "cannon.png"),
+            new StreamingAssetArxFile("/ArxShopApplet/sword.png", "sword.png")
+        };
         Dictionary<string, int> namesRev;
-        
+        Applet applet;
+
         // Start is called before the first frame update
         void Start() {
-            // Create a field for the callback
-            Arx.logiArxCbContext contextCallback;
-            // Set its content and callback funtion
-            contextCallback.arxCallBack = SDKCallback;
-            contextCallback.arxContext = IntPtr.Zero;
-            // Initialize the SDK
-            bool retVal = Arx.LogiArxInit("com.unig.arx.shop", "Weapon Shop", ref contextCallback);
-
-            if (!retVal) {
-                int retCode = Arx.GetLastError();
-                Debug.LogError("Cannot initialize Arx SDK: " + retCode);
-            }
-
-            namesRev = names.ToDictionary(x => x.Value, y => y.Key);
-
-            StartCoroutine(GiveGold());
+            Arx.Shutdown();
+            applet = new Applet(appletFiles) {
+                uploadOnConnection = true,
+            };
+            applet.Connected.AddListener(() => Show());
+            applet.Tap.AddListener(z => BuyItem(z));
         }
+
+        void Show() { applet.Show(); }
 
         // Called when the app quits
         private void OnApplicationQuit() {
             // Shut down the Arx SDK
-            Arx.Shutdown();
+            applet.Dispose();
         }
         
         // Update is called once per frame
@@ -69,47 +68,25 @@ namespace UniG.Demos {
             CanWeAfford();
         }
         
-        // Callback function for Arx SDK
-        static void SDKCallback(int eventType, int eventValue, string eventArg, IntPtr context) {
-            Debug.Log(eventType + " " + eventArg);
-            // If our event is a device connecting:
-            if (eventType == (int)Arx.Event.Arrival) {
-                // Send our applet's index file
-                Arx.AddStreamingAssetAs("/ArxShopApplet/index.html", "index.html");
-                // Send all its dependencies
-                Arx.AddStreamingAssetAs("/ArxShopApplet/cannon.png", "cannon.png");
-                Arx.AddStreamingAssetAs("/ArxShopApplet/sword.png", "sword.png");
-                // Set our index file
-                // This makes the applet show up and become active in Arx Control
-                Arx.SetIndex("index.html");
-            }
-            // Else, if it's a tap on a tag:
-            else if (eventType == (int)Arx.Event.TagTapped) {
-                // If the argument starts with "buy":
-                if (eventArg.StartsWith("buy")) {
-                    Debug.Log(eventArg);
-                    // Get the ID of the item the user bought
-                    var item = int.Parse(eventArg.Replace("buy_it_", ""));
-                    // Buy it
-                    BuyItem(item);
-                }
-            }
-        }
-        
         // Helper function for buying items
-        static void BuyItem(int item) {
-            // If we can afford it:
-            if (gold >= costs[item]) {
-                
-                // Subtract its cost
-                gold -= costs[item];
-                // Add it to the item list
-                items.Add(names[item]);
-            }
-            // else:
-            else {
-                // Show a warning that we are too poor
-                Arx.SetTagContentById("cant_afford_" + item, "Cannot afford this weapon!");
+        static void BuyItem(string arg) {
+            // If the argument starts with "buy":
+            if (arg.StartsWith("buy")) {
+                Debug.Log(arg);
+                // Get the ID of the item the user bought
+                var item = int.Parse(arg.Replace("buy_it_", ""));
+                // If we can afford it:
+                if (gold >= costs[item]) {
+                    // Subtract its cost
+                    gold -= costs[item];
+                    // Add it to the item list
+                    items.Add(names[item]);
+                }
+                // else:
+                else {
+                    // Show a warning that we are too poor
+                    Arx.SetTagContentById("cant_afford_" + item, "Cannot afford this weapon!");
+                }
             }
         }
         
